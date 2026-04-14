@@ -1,5 +1,10 @@
 # React + TypeScript + Vite
 
+
+
+
+Trainer link -> https://github.com/aniljos/react-nextjs-april-2026
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

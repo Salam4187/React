@@ -3,7 +3,8 @@ import AppBar from "./components/AppBar"
 import { BrowserRouter as Router, Routes,Route } from "react-router-dom"
 import Counter from "./components/Counter"
 import Login from "./components/Login"
-import ListProducts from "./components/ListProducts"
+import ListProducts from "./Pages/ListProducts"
+import EditProducts from "./Pages/EditProducts"
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element= {<Counter inputCount={0}/>}/>
             <Route path="/products" element= {<ListProducts/>}/>
             <Route  path="/login" element= {<Login/>} />
+            <Route  path="/products/:id" element= {<EditProducts/>} />
             </Routes>
           </main>
 
