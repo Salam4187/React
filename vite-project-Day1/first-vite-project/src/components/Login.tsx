@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState ,type MouseEvent} from "react";
+import axios from "axios";
 
 function Login(){
 
@@ -7,18 +8,26 @@ function Login(){
         userNameInputRef.current.focus();
 
 
+
         return ()=>{
             console.log("login page unmounted")
         }
     },[]);
     
-    function LoginUser(e:MouseEvent<HTMLButtonElement>){
+    async function LoginUser(e:MouseEvent<HTMLButtonElement>){
         e.preventDefault();
         userNameInputRef.current.focus();
 
         if(userName && password){
-        
-setMessage("")
+
+                    const url='http://localhost:9000/login';
+                    try {
+                        const response=await axios.post(url,{name:userName,password:password});
+                        console.log("response-->",response)
+                    } catch (error) {
+                        console.log("failed",error)
+                    }
+           setMessage("")
         }else{
             setMessage("enter the creds");
         }

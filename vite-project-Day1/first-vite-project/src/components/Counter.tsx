@@ -1,5 +1,6 @@
 import { useEffect, useState, type ChangeEvent } from "react";
 
+
 type CounterProps={
     inputCount: number;
 }
