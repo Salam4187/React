@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 
 type CounterProps={
     inputCount: number;
@@ -10,6 +10,9 @@ const Counter: React.FC<CounterProps>= ({inputCount}) =>{
     //this will act as linkgae between porps comming from ui to the counter to handle state changes
 
     const [count,changeCount]=useState(inputCount);
+
+
+    useEffect(()=>{console.log("after updated-->",count);},[count]);
 function inc(){
 
 
