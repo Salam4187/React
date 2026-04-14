@@ -5,7 +5,7 @@ function AppBar(){
     return (
      <nav className="navbar bg-dark border-bottom border-body">
         <div className="container-fluid">
-            <a className="navbar-brand" href="#">React</a>
+            <a className="navbar-brand">React</a>
             <ul className="nav">
   <li className="nav-item">
     <Link className="nav-link" to="/">Home</Link>
