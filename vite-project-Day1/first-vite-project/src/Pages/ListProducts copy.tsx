@@ -1,18 +1,17 @@
 import axios from "axios";
+import { useEffect, useState } from "react"
 import { Product } from "../model/Product";
 import './ListProducts.css';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { AppState } from "../redux/store";
 import { useTitle } from "../hooks/useTitle";
-import { useProducts } from "../hooks/useProdcuts";
 
 function ListProducts() {
 
-
+    const [products, setProdcuts] = useState<Product[]>([]);
 
     const url = 'http://localhost:9000/secure_products';
-   const {products, setProducts}=useProducts(url);
     const navigate = useNavigate();
     const auth=useSelector((state:AppState)=>state.auth);
     useTitle("List Products");
@@ -28,7 +27,7 @@ function ListProducts() {
             const productsCopy = [...products]
             const index = productsCopy.findIndex(item => item.id === prodcut.id);
             productsCopy.splice(index, 1);
-            setProducts(productsCopy);
+            setProdcuts(productsCopy);
 
 
         } catch (error) {
@@ -42,8 +41,31 @@ function ListProducts() {
     }
 
 
+    async function fetchProducts() {
+
+        try {
+            if(!auth.isAuthenticated){
+                navigate("/login");
+                return;
+
+            }
+            const headers = { 
+                   "Authorization": `Bearer ${auth.accessToken}` 
+                    };
+            const response = await axios.get<Product[]>(url,{headers});
+            console.log("response-->", response);
+            setProdcuts(response.data)
+        } catch (error) {
+            console.log("Error-->", error);
+        }
+    }
 
 
+    useEffect(() => {
+
+        fetchProducts();
+
+    }, []);
 
 
 

@@ -28,7 +28,7 @@ function Login() {
                 const response = await axios.post(url, { name: userName, password: password });
                 console.log("response-->", response);
 
-                    dispatch({type:"login",payload:{
+                dispatch({type:"login",payload:{
                 isAuthenticated: true,
                 userName:userName,
                 accessToken: response.data.accessToken,
