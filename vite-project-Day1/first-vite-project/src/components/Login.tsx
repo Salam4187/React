@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useTitle } from "../hooks/useTitle";
 
 function Login() {
 
@@ -24,13 +26,24 @@ function Login() {
             const url = 'http://localhost:9000/login';
             try {
                 const response = await axios.post(url, { name: userName, password: password });
-                console.log("response-->", response)
-            } catch (error) {
-                console.log("failed", error)
-                setMessage("Please enter valid creds");
-            }
+                console.log("response-->", response);
+
+                    dispatch({type:"login",payload:{
+                isAuthenticated: true,
+                userName:userName,
+                accessToken: response.data.accessToken,
+                refreshToken:response.data.refreshToken
+            }})
             navigate("/")
             setMessage("")
+                
+                
+            } catch (error) {
+                console.log("failed", error)
+                dispatch({type:"logout"});
+                setMessage("Please enter valid creds");
+            }
+        
         } else {
             setMessage("enter the creds");
         }
@@ -41,6 +54,10 @@ function Login() {
     const [message, setMessage] = useState("");
     const userNameInputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
+    const dispatch=useDispatch();
+    useTitle("Login");
+    
+
 
 
 

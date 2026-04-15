@@ -3,18 +3,24 @@ import { useEffect, useState } from "react"
 import { Product } from "../model/Product";
 import './ListProducts.css';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { AppState } from "../redux/store";
+import { useTitle } from "../hooks/useTitle";
 
 function ListProducts() {
 
     const [products, setProdcuts] = useState<Product[]>([]);
 
-    const url = 'http://localhost:9000/products';
+    const url = 'http://localhost:9000/secure_products';
     const navigate = useNavigate();
+    const auth=useSelector((state:AppState)=>state.auth);
+    useTitle("List Products");
 
 
     async function handleDelete(prodcut: Product) {
         const deleteUrl = 'http://localhost:9000/products';
-        try {
+        try {   
+     
             await axios.delete(deleteUrl + '/' + prodcut.id);
             //await fetchProducts();
 
@@ -38,7 +44,15 @@ function ListProducts() {
     async function fetchProducts() {
 
         try {
-            const response = await axios.get<Product[]>(url);
+            if(!auth.isAuthenticated){
+                navigate("/login");
+                return;
+
+            }
+            const headers = { 
+                   "Authorization": `Bearer ${auth.accessToken}` 
+                    };
+            const response = await axios.get<Product[]>(url,{headers});
             console.log("response-->", response);
             setProdcuts(response.data)
         } catch (error) {

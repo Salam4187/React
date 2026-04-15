@@ -5,6 +5,8 @@ import Counter from "./components/Counter"
 import Login from "./components/Login"
 import ListProducts from "./Pages/ListProducts"
 import EditProducts from "./Pages/EditProducts"
+import GadgetStore from "./Pages/GadgetStore"
+import ViewCart from "./Pages/ViewCart"
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
             <Route path="/products" element= {<ListProducts/>}/>
             <Route  path="/login" element= {<Login/>} />
             <Route  path="/products/:id" element= {<EditProducts/>} />
+            <Route  path="/gadgets" element= {<GadgetStore/>} />
+            <Route  path="/viewcart" element= {<ViewCart/>} />
             </Routes>
           </main>
 
