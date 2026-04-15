@@ -1,9 +1,21 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppThemeContext } from "../context/AppThemeContext";
+
 
 
 function AppBar(){
+
+  function swithTheme(){
+    themeContext.changeMode(themeContext.mode === "dark"? "light" :"dark");
+    console.log("mode-->",themeContext.mode)
+
+  }
+
+const themeContext=useContext(AppThemeContext);
+
     return (
-     <nav className="navbar bg-dark border-bottom border-body">
+     <nav className={`navbar navbar-${themeContext.mode} bg-${themeContext.mode} border-bottom border-body`}>
         <div className="container-fluid">
             <a className="navbar-brand">React</a>
             <ul className="nav">
@@ -22,6 +34,11 @@ function AppBar(){
     <li className="nav-item">
     <Link className="nav-link" to="/viewcart">View Cart</Link>
   </li>
+
+     <li className="nav-item">
+    <button className="btn btn-warning" onClick={swithTheme}>Swith Theme</button>
+  </li>
+
 
 </ul>
         </div>
