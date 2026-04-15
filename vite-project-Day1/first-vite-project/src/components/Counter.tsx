@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent } from "react";
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 
 
 type CounterProps={
@@ -11,6 +11,8 @@ const Counter: React.FC<CounterProps>= ({inputCount}) =>{
     //this will act as linkgae between porps comming from ui to the counter to handle state changes
 
     const [count,changeCount]=useState(inputCount);
+    const clickCount=useRef(0);
+
 
 
     useEffect(()=>{console.log("after updated-->",count);},[count]);
@@ -25,7 +27,8 @@ function inc(){
      // this way it will ensure the proper increaments as we are using callbacks for syncronus 
           //changeCount((count)=>count+1)
     changeCount((count)=>count+1)
-      console.log("after increased",count);
+    clickCount.current=clickCount.current+1;
+      console.log("clickCount",clickCount.current);
 }
 
 function dec(){
