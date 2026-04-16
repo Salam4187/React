@@ -1,4 +1,5 @@
 "use client"
+
 import React, { Children, useState, type JSX } from "react";
 import { jsx } from "react/jsx-runtime";
 
@@ -23,8 +24,7 @@ export function AppThemeContextProvider(props: AppThemeContextProviderProps){
 
     return (
       <AppThemeContext.Provider value={{mode,changeMode:setMode}}>
-        {props.children}
-        
+        {props.children}       
         </AppThemeContext.Provider>
     )
 }

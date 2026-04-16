@@ -4,8 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import { Provider } from 'react-redux'
 import {store} from './redux/store.ts'
-import {  AppThemeContextProvider } from './context/AppThemeContext.tsx';
-import './axios/interceptor.ts'
+import {  AppThemeContextProvider } from './context/AppThemeContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,5 +1,7 @@
+"use client"
+
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import  Link from "next/link";
 import { AppThemeContext } from "../context/AppThemeContext";
 
 
@@ -7,7 +9,7 @@ import { AppThemeContext } from "../context/AppThemeContext";
 function AppBar(){
 
   function swithTheme(){
-    themeContext.changeMode(themeContext.mode === "dark"? "light" :"dark";
+    themeContext.changeMode(themeContext.mode === "dark"? "light" :"dark");
     console.log("mode-->",themeContext.mode)
 
   }
@@ -20,19 +22,22 @@ const themeContext=useContext(AppThemeContext);
             <a className="navbar-brand">React</a>
             <ul className="nav">
   <li className="nav-item">
-    <Link className="nav-link" to="/">Home</Link>
+    <Link className="nav-link" href="/">Home</Link>
   </li>
   <li className="nav-item">
-    <Link className="nav-link" to="/products">Products</Link>
+    <Link className="nav-link" href="/products">Products</Link>
   </li>
     <li className="nav-item">
-    <Link className="nav-link" to="/login">Login</Link>
+    <Link className="nav-link" href="/login">Login</Link>
   </li>
   <li className="nav-item">
-    <Link className="nav-link" to="/gadgets">Gadget Store</Link>
+    <Link className="nav-link" href="/gadgets">Gadget Store</Link>
   </li>
     <li className="nav-item">
-    <Link className="nav-link" to="/viewcart">View Cart</Link>
+    <Link className="nav-link" href="/viewcart">View Cart</Link>
+  </li>
+     <li className="nav-item">
+    <Link className="nav-link" href="/customers">Customers</Link>
   </li>
 
      <li className="nav-item">
