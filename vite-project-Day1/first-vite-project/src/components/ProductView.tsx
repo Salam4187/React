@@ -16,7 +16,7 @@ const ProductView: React.FC<ProductViewProp> = React.memo(({ product,onDelete,on
     async function handleDelete() {
 
         try {
-            const url = import.meta.env.VITE_API_URL + "/products/" + product.id;
+            const url = import.meta.env.VITE_API_URL + "/secure_products/" + product.id;
             await axios.delete(url);
             if(onDelete){
                 onDelete(product);

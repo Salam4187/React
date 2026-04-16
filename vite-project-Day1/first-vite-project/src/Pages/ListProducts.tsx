@@ -6,13 +6,12 @@ import { useSelector } from "react-redux";
 import type { AppState } from "../redux/store";
 import { useTitle } from "../hooks/useTitle";
 import { useProducts } from "../hooks/useProdcuts";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import ProductView from "../components/ProductView";
 
 function ListProducts() {
 
-
-
+   
     const url = 'http://localhost:9000/secure_products';
     const { products, setProducts } = useProducts(url);
     const navigate = useNavigate();
@@ -20,7 +19,7 @@ function ListProducts() {
     useTitle("List Products");
     const [isMessageVisible, setMessageVisible] = useState(true);
 
-    function onProductDelete(prodcut: Product) {
+    const onProductDelete= useCallback( async (prodcut: Product) => {
 
         try {
             const productsCopy = [...products]
@@ -32,16 +31,27 @@ function ListProducts() {
             console.log("error->", error)
         }
 
-    }
+    },[products]);
 
-    function onhandleEdit(prodcut: Product) {
-        navigate("/products/" + prodcut.id)
-    }
+    const onhandleEdit= useCallback( async (prodcut: Product) =>{
+        navigate("/products/" + prodcut.id, {state:{products}} )
+    },[navigate]);
 
+    const totalPrice=useMemo(()=>{
+        console.log("called total price");
+        let total=0;
+        products.forEach(item=>{
+            if(item.price)
+            total=total+item.price
+
+        })
+        return total;
+    },[products]);
 
     return (
         <div>
             <h3>List of Products</h3>
+            <h2>Total Price: {totalPrice}</h2>
             {isMessageVisible ? <div className="alert alert-info">Demo for List Product</div> : null} <br />
             <button className="btn btn-info" onClick={() => setMessageVisible(!isMessageVisible)}>
                 {isMessageVisible ? "Hide" : "Show"}

@@ -19,10 +19,11 @@ export function useProducts(url:string){
                 return;
 
             }
-            const headers = { 
-                   "Authorization": `Bearer ${auth.accessToken}` 
-                    };
-            const response = await axios.get<Product[]>(url,{headers});
+            // const headers = { 
+            //        "Authorization": `Bearer ${auth.accessToken}` 
+            //         };
+            //const response = await axios.get<Product[]>(url,{headers});
+            const response = await axios.get<Product[]>(url);
             console.log("response-->", response);
             setProducts(response.data)
         } catch (error) {
