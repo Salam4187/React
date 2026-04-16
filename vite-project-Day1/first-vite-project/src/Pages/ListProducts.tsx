@@ -34,7 +34,7 @@ function ListProducts() {
 
     }
 
-    function handleEdit(prodcut: Product) {
+    function onhandleEdit(prodcut: Product) {
         navigate("/products/" + prodcut.id)
     }
 
@@ -49,7 +49,9 @@ function ListProducts() {
             <div style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center' }}>
                 {products.map(prodcut => {
                     return (
-                        <ProductView key={prodcut.id} product={prodcut} onDelete={onProductDelete}/>
+                        <ProductView key={prodcut.id} product={prodcut} onDelete={onProductDelete}
+                        onEdit={onhandleEdit}
+                        />
                         // <div className="product" key={prodcut.id} >
                         //     <p>Id: {prodcut.id}</p>
                         //     <p>Name: {prodcut.name}</p>
