@@ -18,22 +18,15 @@ function ListProducts() {
     const navigate = useNavigate();
     const auth = useSelector((state: AppState) => state.auth);
     useTitle("List Products");
-    const [isMessageVisible,setMessageVisible]=useState(true);
+    const [isMessageVisible, setMessageVisible] = useState(true);
 
+    function onProductDelete(prodcut: Product) {
 
-
-    async function handleDelete(prodcut: Product) {
-        const deleteUrl = 'http://localhost:9000/products';
         try {
-
-            await axios.delete(deleteUrl + '/' + prodcut.id);
-            //await fetchProducts();
-
             const productsCopy = [...products]
             const index = productsCopy.findIndex(item => item.id === prodcut.id);
             productsCopy.splice(index, 1);
             setProducts(productsCopy);
-
 
         } catch (error) {
             console.log("error->", error)
@@ -46,22 +39,17 @@ function ListProducts() {
     }
 
 
-
-
-
-
-
     return (
         <div>
             <h3>List of Products</h3>
-            {isMessageVisible?<div className="alert alert-info">Demo for List Product</div>:null} <br/>
-            <button className="btn btn-info" onClick={()=>setMessageVisible(!isMessageVisible)}> 
-                {isMessageVisible?"Hide":"Show"}
+            {isMessageVisible ? <div className="alert alert-info">Demo for List Product</div> : null} <br />
+            <button className="btn btn-info" onClick={() => setMessageVisible(!isMessageVisible)}>
+                {isMessageVisible ? "Hide" : "Show"}
             </button>
             <div style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center' }}>
                 {products.map(prodcut => {
                     return (
-                        <ProductView product={prodcut}/>
+                        <ProductView key={prodcut.id} product={prodcut} onDelete={onProductDelete}/>
                         // <div className="product" key={prodcut.id} >
                         //     <p>Id: {prodcut.id}</p>
                         //     <p>Name: {prodcut.name}</p>

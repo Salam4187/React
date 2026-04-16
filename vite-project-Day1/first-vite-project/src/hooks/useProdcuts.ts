@@ -11,7 +11,7 @@ export function useProducts(url:string){
     const navigate = useNavigate();
 
 
-    async function  fetchProducts() {
+    async function  fetchProducts(signal:AbortSignal) {
 
         try {
             if(!auth.isAuthenticated){
@@ -33,7 +33,14 @@ export function useProducts(url:string){
     
 
     useEffect(()=>{
-        fetchProducts();        
+       const controller=new AbortController();
+
+        fetchProducts(controller.signal);        
+
+        return ()=>{
+
+            controller.abort();
+        }
     },[]);
 
     // ✅ Return products and setter from the hook itself

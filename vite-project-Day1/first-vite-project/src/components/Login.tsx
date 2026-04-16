@@ -6,6 +6,8 @@ import { useTitle } from "../hooks/useTitle";
 
 function Login() {
 
+    "use memo";
+
     useEffect(() => {
         console.log("login comp mounteed");
         userNameInputRef.current.focus();
