@@ -37,19 +37,19 @@ const slice = createSlice({
     reducers: {
         addToCart: (state, action: PayloadAction<CartItem>) => {
             const index = state.cart.findIndex(
-                (item) => item.product.id === action.payload.product.id
+                (item) => item.product?.id === action.payload.product?.id
             );
 
             if (index !== -1) {
                 // Item already exists in cart, just increment quantity
-                state.cart[index].quantity += action.payload.quantity ?? 1;
+                state.cart[index].quantity = (state.cart[index].quantity || 0) + (action.payload.quantity || 1);
             } else {
                 // New item, push to cart
                 state.cart.push(action.payload);
             }
         },
         removeFromCart: (state: GadgetState, action: PayloadAction<number>) => {
-            const index = state.cart.findIndex(item => item.product.id == action.payload)
+            const index = state.cart.findIndex(item => item.product?.id == action.payload)
             if (index !== -1) {
                 state.cart.splice(index, 1);
             }

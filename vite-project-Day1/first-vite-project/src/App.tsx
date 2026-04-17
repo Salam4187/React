@@ -6,8 +6,10 @@ import Login from "./components/Login"
 import ListProducts from "./Pages/ListProducts"
 import EditProducts from "./Pages/EditProducts"
 import GadgetStore from "./Pages/GadgetStore"
-import ViewCart from "./Pages/ViewCart"
-import ProptectedRoute from "./components/ProtectedRoute"
+import ProptectedRoute from "./components/ProtectedRoute";
+import React, { Suspense } from "react"
+
+const ViewCart = React.lazy(() => import('./Pages/ViewCart'));
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
 
         </header>
         <main>
+          <Suspense fallback={<div>loading...</div>}>
           <Routes>
             <Route path="/" element={<Counter inputCount={0} />} />
             <Route path="/products" 
@@ -37,6 +40,7 @@ function App() {
             <Route path="/gadgets" element={<ProptectedRoute><GadgetStore /></ProptectedRoute>} />
             <Route path="/viewcart" element={<ProptectedRoute><ViewCart /></ProptectedRoute>} />
           </Routes>
+          </Suspense>
         </main>
 
       </div>

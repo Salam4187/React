@@ -17,17 +17,16 @@ const Counter: React.FC<CounterProps> = ({ inputCount }) => {
 
 
 
-    useEffect(() => { console.log("after updated-->", count); }, [count]);
+    useEffect(() => { 
+        
+        console.log("after updated-->", count); }, [count]
+    
+    
+    );
+
+
+
     function inc() {
-
-
-        //this will cause issue as each below operation is asyncronus 
-        //changeCount(count+1)
-        //changeCount(count+1)
-        //changeCount(count+1)
-
-        // this way it will ensure the proper increaments as we are using callbacks for syncronus 
-        //changeCount((count)=>count+1)
         changeCount((count) => count + 1)
         clickCount.current = clickCount.current + 1;
         console.log("clickCount", clickCount.current);

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTitle } from "../hooks/useTitle";
+import { trackPromise } from "react-promise-tracker";
 
 function Login() {
 
@@ -27,7 +28,7 @@ function Login() {
 
             const url = 'http://localhost:9000/login';
             try {
-                const response = await axios.post(url, { name: userName, password: password });
+                const response = await trackPromise (axios.post(url, { name: userName, password: password }));
                 console.log("response-->", response);
 
                 dispatch({type:"login",payload:{

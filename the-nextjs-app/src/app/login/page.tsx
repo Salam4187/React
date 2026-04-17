@@ -19,7 +19,7 @@ function Login() {
 
     useEffect(() => {
         console.log("login comp mounteed");
-        userNameInputRef.current.focus();
+        //userNameInputRef.current.focus();
         return () => {
             console.log("login page unmounted")
         }
@@ -27,7 +27,7 @@ function Login() {
 
     async function LoginUser(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        userNameInputRef.current.focus();
+        //userNameInputRef.current.focus();
         if (userName && password) {
 
             const url = 'http://localhost:9000/login';

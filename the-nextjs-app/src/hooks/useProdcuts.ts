@@ -14,7 +14,7 @@ export function useProducts(url:string){
     async function  fetchProducts(signal:AbortSignal) {
 
         try {
-            if(!auth.isAuthenticated){
+            if(!auth?.isAuthenticated){
                  router.push("/login")
                 return;
 

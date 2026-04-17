@@ -7,7 +7,7 @@ import { AppThemeContext } from "../context/AppThemeContext";
 function AppBar(){
 
   function swithTheme(){
-    themeContext.changeMode(themeContext.mode === "dark"? "light" :"dark";
+    themeContext.changeMode(themeContext.mode === "dark"? "light" :"dark");
     console.log("mode-->",themeContext.mode)
 
   }

@@ -40,6 +40,10 @@ const themeContext=useContext(AppThemeContext);
     <Link className="nav-link" href="/customers">Customers</Link>
   </li>
 
+       <li className="nav-item">
+    <Link className="nav-link" href="/supplier">Suppliers</Link>
+  </li>
+
      <li className="nav-item">
     <button className="btn btn-warning" onClick={swithTheme}>Swith Theme</button>
   </li>
